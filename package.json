@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "node-sass": "npm:dart-sass",
     "react-router-dom": "^5.2.0"
   }
 }
