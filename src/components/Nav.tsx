@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import React from "react";
+import x from "icons/money.svg";
+console.log(x);
 const NavWrapper = styled.nav`
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
   > ul {
@@ -21,6 +23,7 @@ const Nav = () => {
     <NavWrapper>
       <ul>
         <li>
+          <img src={x}></img>
           <Link to="/record">记录页</Link>
         </li>
         <li>
