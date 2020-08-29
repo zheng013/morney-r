@@ -6,20 +6,23 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Layout from "components/Layout";
+import Money from "views/Money";
+import Label from "views/Label";
+import Statistics from "views/Statistics";
+import Notmatch from "views/Notmatch";
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/record">
-          <Home />
+          <Money />
         </Route>
         <Route exact path="/labels">
-          <Users />
+          <Label />
         </Route>
         <Route exact path="/stactistics">
-          <About />
+          <Statistics />
         </Route>
         <Redirect exact from="/" to="/record"></Redirect>
         <Route exact path="*">
@@ -31,17 +34,5 @@ function App() {
 }
 //path='/'必须在最后一个路由才生效 最为defalut的选项
 //hashrouter history
-function Home() {
-  return <Layout>Home</Layout>;
-}
 
-function About() {
-  return <Layout>About</Layout>;
-}
-function Users() {
-  return <Layout>Users</Layout>;
-}
-function Notmatch() {
-  return <h2>您访问的页面不存在</h2>;
-}
 export default App;
