@@ -35,7 +35,9 @@ function App() {
               <About />
             </Route>
             <Redirect exact from="/" to="/record"></Redirect>
-            <Route exact path="*"></Route>
+            <Route exact path="*">
+              <Notmatch />
+            </Route>
           </Switch>
         </Content>
         <Nav />
@@ -54,5 +56,8 @@ function About() {
 }
 function Users() {
   return <div>Users</div>;
+}
+function Notmatch() {
+  return <h2>您访问的页面不存在</h2>;
 }
 export default App;
