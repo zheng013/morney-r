@@ -35,10 +35,16 @@ const Nav = () => {
           </Link>
         </li>
         <li>
-          <Link to="/labels">标签页</Link>
+          <Link to="/labels">
+            <Icon name="label" />
+            <span>标签页</span>
+          </Link>
         </li>
         <li>
-          <Link to="/stactistics">统计页</Link>
+          <Link to="/stactistics">
+            <Icon name="TaskStatistics" />
+            <span>统计页</span>
+          </Link>
         </li>
       </ul>
     </NavWrapper>
