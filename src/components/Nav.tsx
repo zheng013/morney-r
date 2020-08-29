@@ -23,7 +23,9 @@ const Nav = () => {
     <NavWrapper>
       <ul>
         <li>
-          <img src={x}></img>
+          <svg fill="red" className="icon">
+            <use xlinkHref="#money" />
+          </svg>
           <Link to="/record">记录页</Link>
         </li>
         <li>
