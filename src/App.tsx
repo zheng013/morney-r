@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import React from "react";
+import "App.scss";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import styled from "styled-components";
+import Nav from "components/Nav";
+
+const Wrapper = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+const Content = styled.div`
+  flex-grow: 1;
+  overflow: auto;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Wrapper>
+        <Content>
+          <Switch>
+            <Route exact path="/record">
+              <Home />
+            </Route>
+            <Route exact path="/labels">
+              <Users />
+            </Route>
+            <Route exact path="/stactistics">
+              <About />
+            </Route>
+            <Redirect exact from="/" to="/record"></Redirect>
+            <Route exact path="*"></Route>
+          </Switch>
+        </Content>
+        <Nav />
+      </Wrapper>
+    </Router>
   );
 }
+//path='/'必须在最后一个路由才生效 最为defalut的选项
+//hashrouter history
+function Home() {
+  return <div>Home</div>;
+}
 
+function About() {
+  return <div>About</div>;
+}
+function Users() {
+  return <div>Users</div>;
+}
 export default App;
