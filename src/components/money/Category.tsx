@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const CategoryWrapper = styled.section`
-  height: 64px;
-  background: #999;
-  vertical-align: center; /*垂直居中*/
-  line-height: 64px;
+  background: #c4c4c4;
+  font-size: 24px;
   > ul {
     display: flex;
     > li {
       width: 50%;
+      padding: 16px 0;
       text-align: center;
       position: relative;
       &.selected::before {
