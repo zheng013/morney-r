@@ -2,18 +2,20 @@ import styled from "styled-components";
 import React from "react";
 
 const TagsWrapper = styled.section`
-  margin-bottom: 10px;
+  background: #ffffff;
   flex-grow: 1;
   position: relative;
+  padding: 16px;
   > ol {
-    display: flex;
+    margin: 0 -12px;
     > li {
-      margin: 10px;
-      background: #999;
-      height: 20px;
-      width: 40px;
-      border-radius: 10px;
+      display: inline-block;
+      margin: 8px 12px;
+      background: #d9d9d9;
+      padding: 3px 18px;
+      border-radius: 18px;
       text-align: center; /*水平居中*/
+      font-size: 14px;
     }
   }
   > button {
@@ -21,10 +23,10 @@ const TagsWrapper = styled.section`
     outline: none;
     background: none;
     position: absolute;
-    bottom: 10px;
-    margin-left: 10px;
+    bottom: 16px;
     color: #666;
-    border-bottom: 1px solid #999;
+    padding: 2px 3px;
+    border-bottom: 1px solid #333;
   }
 `;
 function Tags() {

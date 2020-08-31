@@ -3,7 +3,6 @@ import React from "react";
 
 const NotesWrapper = styled.section`
   height: 60px;
-  background: #eee;
   vertical-align: center; /*垂直居中*/
   line-height: 60px;
   > label {
