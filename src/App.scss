@@ -38,6 +38,9 @@ body {
 button {
   font-family: inherit;
 }
+:focus {
+  outline: none;
+}
 
 %font-hei {
   font-family: -apple-system, "Noto Sans", "Helvetica Neue", Helvetica,

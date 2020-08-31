@@ -2,13 +2,21 @@ import styled from "styled-components";
 import React from "react";
 
 const NotesWrapper = styled.section`
-  height: 60px;
-  vertical-align: center; /*垂直居中*/
-  line-height: 60px;
+  padding: 0 16px;
+  /* vertical-align: center; 垂直居中
+  line-height: 60px;*/
+  font-size: 14px;
   > label {
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    > span {
+      white-space: nowrap;
+    }
     > input {
-      margin-left: 10px;
+      margin-left: 16px;
+      height: 72px;
+      width: 100%;
+      display: block;
       background: none;
       border: none;
       outline: none;
