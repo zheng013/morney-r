@@ -49,6 +49,11 @@ const Tags: React.FC = () => {
       setSelectedTags([...selectedTags, tag]);
     }
   };
+  const selectedClass = (tag: string) => {
+    return selectedTags
+      .map((selectedTag) => (selectedTag === tag ? "selected" : ""))
+      .join("");
+  };
 
   return (
     <TagsWrapper>
@@ -59,9 +64,7 @@ const Tags: React.FC = () => {
             onClick={() => {
               toggleFn(tag);
             }}
-            className={selectedTags
-              .map((selectedTag) => (selectedTag === tag ? "selected" : ""))
-              .join("")}
+            className={selectedClass(tag)}
           >
             {tag}
           </li>
