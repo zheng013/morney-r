@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 
 const TagsWrapper = styled.section`
   background: #ffffff;
@@ -16,6 +16,10 @@ const TagsWrapper = styled.section`
       border-radius: 18px;
       text-align: center; /*水平居中*/
       font-size: 14px;
+      &.selected {
+        background: #1a6ef0;
+        color: #fff;
+      }
     }
   }
   > button {
@@ -30,15 +34,40 @@ const TagsWrapper = styled.section`
   }
 `;
 const Tags: React.FC = () => {
+  const [tags, setTags] = useState<string[]>(["衣", "食", "住", "行"]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const addFn = () => {
+    const tagName = window.prompt("请输入您要添加的标签名");
+    if (tagName !== null) {
+      setTags([...tags, tagName]);
+    }
+  };
+  const toggleFn = (tag: string) => {
+    if (selectedTags.indexOf(tag) >= 0) {
+      setSelectedTags(selectedTags.filter((t) => t !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
+
   return (
     <TagsWrapper>
       <ol>
-        <li>衣</li>
-        <li>食</li>
-        <li>住</li>
-        <li>行</li>
+        {tags.map((tag) => (
+          <li
+            key={tag}
+            onClick={() => {
+              toggleFn(tag);
+            }}
+            className={selectedTags
+              .map((selectedTag) => (selectedTag === tag ? "selected" : ""))
+              .join("")}
+          >
+            {tag}
+          </li>
+        ))}
       </ol>
-      <button>新增标签</button>
+      <button onClick={addFn}>新增标签</button>
     </TagsWrapper>
   );
 };
