@@ -33,4 +33,4 @@ function Notes() {
     </NotesWrapper>
   );
 }
-export default Notes;
+export { Notes };

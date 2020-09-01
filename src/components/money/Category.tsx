@@ -45,4 +45,4 @@ const Category: React.FC = () => {
     </CategoryWrapper>
   );
 };
-export default Category;
+export { Category };

@@ -90,4 +90,4 @@ function NumberPad() {
     </NumberPadWrapper>
   );
 }
-export default NumberPad;
+export { NumberPad };

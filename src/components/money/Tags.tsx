@@ -25,7 +25,7 @@ const TagsWrapper = styled.section`
     position: absolute;
     bottom: 16px;
     color: #666;
-    padding: 2px 3px;
+    padding: 0 2px;
     border-bottom: 1px solid #333;
   }
 `;
@@ -42,4 +42,4 @@ function Tags() {
     </TagsWrapper>
   );
 }
-export default Tags;
+export { Tags };

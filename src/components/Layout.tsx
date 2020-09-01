@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "./Nav";
 
 const Wrapper = styled.div`
@@ -15,9 +15,12 @@ const Content = styled.div`
 `;
 
 const Layout = (props: any) => {
+  useEffect(() => {
+    document.querySelector("#ss")?.scrollTo(0, 9999);
+  }, []);
   return (
     <Wrapper>
-      <Content>{props.children}</Content>
+      <Content id="ss">{props.children}</Content>
       <Nav />
     </Wrapper>
   );
