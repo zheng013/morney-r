@@ -29,7 +29,7 @@ const TagsWrapper = styled.section`
     border-bottom: 1px solid #333;
   }
 `;
-function Tags() {
+const Tags: React.FC = () => {
   return (
     <TagsWrapper>
       <ol>
@@ -41,5 +41,5 @@ function Tags() {
       <button>新增标签</button>
     </TagsWrapper>
   );
-}
+};
 export { Tags };
