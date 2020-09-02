@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import styled from "styled-components";
 
 const CategoryWrapper = styled.section`
@@ -24,23 +24,22 @@ const CategoryWrapper = styled.section`
   }
 `;
 const Category: React.FC = () => {
-  const [status, setStatus] = useState("out");
+  const [status, setStatus] = useState("-");
+  const categoryList = useMemo<("+" | "-")[]>(() => ["-", "+"], []); // 相当于常量
+  const categoryMap = useMemo(() => ({ "-": "支出", "+": "收入" }), []); // 相当于常量
+  // ts的变量声明  type KeyType = keyof typeof categoryMap;
 
   return (
     <CategoryWrapper>
       <ul>
-        <li
-          className={status === "out" ? "selected" : ""}
-          onClick={() => setStatus("out")}
-        >
-          支出
-        </li>
-        <li
-          className={status === "in" ? "selected" : ""}
-          onClick={() => setStatus("in")}
-        >
-          收入
-        </li>
+        {categoryList.map((c) => (
+          <li
+            className={status === c ? "selected" : ""}
+            onClick={() => setStatus(c)}
+          >
+            {categoryMap[c]}
+          </li>
+        ))}
       </ul>
     </CategoryWrapper>
   );
