@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 
 const NumberPadWrapper = styled.section`
   > .output {
@@ -67,27 +67,42 @@ const NumberPadWrapper = styled.section`
     }
   }
 `;
-function NumberPad() {
+const NumberPad: React.FC = () => {
+  const [output, setOutput] = useState<string>("");
+  const addFn = (val: string) => {
+    if (output === "" && val === ".") {
+      return;
+    }
+    if (output === "0" && val !== ".") {
+      return;
+    }
+    if (output.indexOf(".") >= 0 && val === ".") {
+      return;
+    }
+    setOutput(output + val);
+  };
   return (
     <NumberPadWrapper>
-      <div className="output">100</div>
+      <div className="output">{output || "0"}</div>
       <div className="buttons">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
+        <button onClick={() => addFn("1")}>1</button>
+        <button onClick={() => addFn("2")}>2</button>
+        <button onClick={() => addFn("3")}>3</button>
         <button>删除</button>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
+        <button onClick={() => addFn("4")}>4</button>
+        <button onClick={() => addFn("5")}>5</button>
+        <button onClick={() => addFn("6")}>6</button>
         <button>清空</button>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
+        <button onClick={() => addFn("7")}>7</button>
+        <button onClick={() => addFn("8")}>8</button>
+        <button onClick={() => addFn("9")}>9</button>
         <button className="OK">OK</button>
-        <button className="zero">0</button>
-        <button>.</button>
+        <button className="zero" onClick={() => addFn("0")}>
+          0
+        </button>
+        <button onClick={() => addFn(".")}>.</button>
       </div>
     </NumberPadWrapper>
   );
-}
+};
 export { NumberPad };

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 
 const NotesWrapper = styled.section`
   padding: 0 16px;
@@ -26,12 +26,12 @@ const NotesWrapper = styled.section`
 const Notes: React.FC = () => {
   const [notes, setNotes] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const blurFn = () => {
+  const blurFn = useCallback(() => {
     if (inputRef.current !== null) {
       setNotes(inputRef.current.value);
     }
     //(e)=>if(e.target!==null)setNotes(e.target.value)
-  };
+  }, []);
   return (
     <NotesWrapper>
       <label>
