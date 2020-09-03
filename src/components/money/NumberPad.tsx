@@ -77,6 +77,7 @@ const NumberPad: React.FC = () => {
       if (content === null) {
         return;
       } else if ("0123456789.".indexOf(content) >= 0) {
+        if (output.length >= 16) return;
         if (output === "0") {
           if (content !== ".") {
             setOutput((output) => content);
@@ -89,6 +90,25 @@ const NumberPad: React.FC = () => {
           return;
         }
         setOutput((output) => output + content);
+      } else {
+        switch (content) {
+          case "删除":
+            if (output.length === 1) {
+              setOutput("0");
+            } else {
+              setOutput(output.slice(0, -1));
+            }
+            break;
+          case "清空":
+            setOutput("0");
+            break;
+          case "OK":
+            console.log("ok");
+            break;
+          default:
+            throw new Error("error");
+            break;
+        }
       }
     },
     [output]
