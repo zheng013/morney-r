@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 const NumberPadWrapper = styled.section`
   > .output {
@@ -68,23 +68,35 @@ const NumberPadWrapper = styled.section`
   }
 `;
 const NumberPad: React.FC = () => {
-  const [output, setOutput] = useState<string>("");
-  const addFn = (val: string) => {
-    if (output === "" && val === ".") {
-      return;
-    }
-    if (output === "0" && val !== ".") {
-      return;
-    }
-    if (output.indexOf(".") >= 0 && val === ".") {
-      return;
-    }
-    setOutput(output + val);
-  };
+  const [output, setOutput] = useState<string>("0");
+  const addFn = (e: string) => {};
+
+  const oneAddFn = useCallback(
+    (e: React.MouseEvent) => {
+      const content = (e.target as HTMLButtonElement).textContent;
+      if (content === null) {
+        return;
+      } else if ("0123456789.".indexOf(content) >= 0) {
+        if (output === "0") {
+          if (content !== ".") {
+            setOutput((output) => content);
+          } else {
+            setOutput((output) => output + content);
+          }
+          return;
+        }
+        if (output.indexOf(".") >= 0 && content === ".") {
+          return;
+        }
+        setOutput((output) => output + content);
+      }
+    },
+    [output]
+  );
   return (
     <NumberPadWrapper>
-      <div className="output">{output || "0"}</div>
-      <div className="buttons">
+      <div className="output">{output}</div>
+      <div className="buttons" onClick={oneAddFn}>
         <button onClick={() => addFn("1")}>1</button>
         <button onClick={() => addFn("2")}>2</button>
         <button onClick={() => addFn("3")}>3</button>

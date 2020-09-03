@@ -28,12 +28,12 @@ const Category: React.FC = () => {
   const categoryList = useMemo<("+" | "-")[]>(() => ["-", "+"], []); // 相当于常量
   const categoryMap = useMemo(() => ({ "-": "支出", "+": "收入" }), []); // 相当于常量
   // ts的变量声明  type KeyType = keyof typeof categoryMap;
-
   return (
     <CategoryWrapper>
       <ul>
         {categoryList.map((c) => (
           <li
+            key={c}
             className={status === c ? "selected" : ""}
             onClick={() => setStatus(c)}
           >
