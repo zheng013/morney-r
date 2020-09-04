@@ -12,6 +12,12 @@ const Money = () => {
     category: "-" as "+" | "-",
     amount: "0",
   });
+  const allSetList = (props: Partial<typeof list>) => {
+    setList({
+      ...list,
+      ...props,
+    });
+  };
   return (
     <Layout>
       <hr />
@@ -24,28 +30,25 @@ const Money = () => {
       {list.amount}
       <Tags
         value={list.selectedTags}
-        setVal={(selectedTags: string[]) => {
-          setList({
-            ...list,
-            selectedTags: selectedTags,
-          });
+        setVal={(selectedTags) => {
+          allSetList({ selectedTags });
         }}
       />
       <Notes
         value={list.notes}
-        setVal={(notes: string) => {
-          setList({ ...list, notes: notes });
+        setVal={(notes) => {
+          allSetList({ notes });
         }}
       />
       <Category
         value={list.category}
-        setVal={(category: "+" | "-") => {
-          setList({ ...list, category: category });
+        setVal={(category) => {
+          allSetList({ category });
         }}
       />
       <NumberPad
         value={list.amount}
-        setVal={(amount: string) => setList({ ...list, amount: amount })}
+        setVal={(amount) => allSetList({ amount })}
       />
     </Layout>
   );
