@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState, useRef, useCallback } from "react";
+import React, { useRef, useCallback } from "react";
 
 const NotesWrapper = styled.section`
   padding: 0 16px;
@@ -23,15 +23,20 @@ const NotesWrapper = styled.section`
     }
   }
 `;
-const Notes: React.FC = () => {
-  const [notes, setNotes] = useState("");
+type Prop = {
+  value: string;
+  setVal: (notes: string) => void;
+  onOK?: () => void;
+};
+const Notes: React.FC<Prop> = (props) => {
+  const { value, setVal } = props;
   const inputRef = useRef<HTMLInputElement>(null);
   const blurFn = useCallback(() => {
     if (inputRef.current !== null) {
-      setNotes(inputRef.current.value);
+      setVal(inputRef.current.value);
     }
     //(e)=>if(e.target!==null)setNotes(e.target.value)
-  }, []);
+  }, [setVal]);
   return (
     <NotesWrapper>
       <label>
@@ -39,7 +44,7 @@ const Notes: React.FC = () => {
         <input
           type="text"
           placeholder="在这里输入备注"
-          defaultValue={notes}
+          defaultValue={value}
           ref={inputRef}
           onBlur={blurFn}
         />

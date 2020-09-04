@@ -1,20 +1,25 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import { PadWrapper } from "./NumberPad/PadWrapper";
 import { computerNumber } from "./NumberPad/computerNumber";
-const NumberPad: React.FC = () => {
-  const [output, setOutput] = useState<string>("0");
+
+type Prop = {
+  value: string;
+  setVal: (amount: string) => void;
+};
+const NumberPad: React.FC<Prop> = (props) => {
+  const { value, setVal } = props;
   const addFn = (e: string) => {};
 
   const oneAddFn = useCallback(
     (e: React.MouseEvent) => {
       const content = (e.target as HTMLButtonElement).textContent;
-      setOutput(computerNumber(content, output));
+      setVal(computerNumber(content, value));
     },
-    [output]
+    [value, setVal] //若不加setval 会保存了之前的原始值
   );
   return (
     <PadWrapper>
-      <div className="output">{output}</div>
+      <div className="output">{value}</div>
       <div className="buttons" onClick={oneAddFn}>
         <button>1</button>
         <button>2</button>

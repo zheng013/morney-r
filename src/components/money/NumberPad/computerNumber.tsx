@@ -28,7 +28,7 @@ const computerNumber = (content: string | null, output: string) => {
       case "清空":
         return "0";
       case "OK":
-        console.log("ok");
+        //  TODO  搜四个部分的信息到money组件
         return "0";
       default:
         return "0";
