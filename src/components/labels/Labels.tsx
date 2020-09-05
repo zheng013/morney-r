@@ -20,7 +20,7 @@ const LabelWrapper = styled.div`
   }
 `;
 type Props = {
-  tags: string[];
+  tags: { id: number; tag: string }[];
   setTags?: () => void;
 };
 const Labels: React.FC<Props> = (props) => {
@@ -29,9 +29,9 @@ const Labels: React.FC<Props> = (props) => {
     <LabelWrapper>
       <ol>
         {tags.map((tag) => (
-          <li key={tag}>
-            <Link to={"labels/tag"}>
-              <span>{tag}</span>
+          <li key={tag.id}>
+            <Link to={"labels/" + tag.id}>
+              <span>{tag.tag}</span>
               <Icon name="right" />
             </Link>
           </li>

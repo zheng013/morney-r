@@ -36,8 +36,8 @@ const TagsWrapper = styled.section`
 `;
 
 type Prop = {
-  value: string[];
-  setVal: (selectedTag: string[]) => void;
+  value: number[];
+  setVal: (selectedTag: number[]) => void;
 };
 const Tags: React.FC<Prop> = (props) => {
   const { tags, setTags } = useTags();
@@ -45,19 +45,19 @@ const Tags: React.FC<Prop> = (props) => {
   const addFn = () => {
     const tagName = window.prompt("请输入您要添加的标签名");
     if (tagName !== null) {
-      setTags([...tags, tagName]);
+      setTags([...tags, { id: 5, tag: tagName }]);
     }
   };
-  const toggleFn = (tag: string) => {
-    if (value.indexOf(tag) >= 0) {
-      setVal(value.filter((t) => t !== tag));
+  const toggleFn = (tagId: number) => {
+    if (value.indexOf(tagId) >= 0) {
+      setVal(value.filter((t) => t !== tagId));
     } else {
-      setVal([...value, tag]);
+      setVal([...value, tagId]);
     }
   };
-  const selectedClass = (tag: string) => {
+  const selectedClass = (tagId: number) => {
     return value
-      .map((selectedTag) => (selectedTag === tag ? "selected" : ""))
+      .map((selectedTag) => (selectedTag === tagId ? "selected" : ""))
       .join("");
   };
 
@@ -66,13 +66,13 @@ const Tags: React.FC<Prop> = (props) => {
       <ol>
         {tags.map((tag) => (
           <li
-            key={tag}
+            key={tag.id}
             onClick={() => {
-              toggleFn(tag);
+              toggleFn(tag.id);
             }}
-            className={selectedClass(tag)}
+            className={selectedClass(tag.id)}
           >
-            {tag}
+            {tag.tag}
           </li>
         ))}
       </ol>

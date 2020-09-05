@@ -22,7 +22,7 @@ function App() {
         <Route exact path="/labels">
           <Label />
         </Route>
-        <Route exact path="/labels/:tag">
+        <Route exact path="/labels/:id">
           <Tag />
         </Route>
         <Route exact path="/stactistics">

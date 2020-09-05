@@ -14,7 +14,7 @@ const MyLayout = styled(Layout)`
 
 const Money: React.FC = () => {
   const [list, setList] = useState({
-    selectedTags: [] as string[],
+    selectedTags: [] as number[],
     notes: "",
     category: "-" as "+" | "-",
     amount: "0",
