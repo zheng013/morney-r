@@ -5,7 +5,7 @@ import { Tags } from "components/money/Tags";
 import { Notes } from "components/money/Notes";
 import { Category } from "components/money/Category";
 
-const Money = () => {
+const Money: React.FC = () => {
   const [list, setList] = useState({
     selectedTags: [] as string[],
     notes: "",
@@ -20,14 +20,6 @@ const Money = () => {
   };
   return (
     <Layout>
-      <hr />
-      {list.selectedTags}
-      <hr />
-      {list.notes}
-      <hr />
-      {list.category}
-      <hr />
-      {list.amount}
       <Tags
         value={list.selectedTags}
         setVal={(selectedTags) => {
