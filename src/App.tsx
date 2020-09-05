@@ -10,6 +10,7 @@ import Money from "views/Money";
 import Label from "views/Label";
 import Statistics from "views/Statistics";
 import Notmatch from "views/Notmatch";
+import { Tag } from "views/Tag";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route exact path="/labels">
           <Label />
+        </Route>
+        <Route exact path="/labels/:tag">
+          <Tag />
         </Route>
         <Route exact path="/stactistics">
           <Statistics />

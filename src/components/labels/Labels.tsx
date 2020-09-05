@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Icon from "components/Icon";
-import { useTags } from "hooks/useTags";
-import React, { useContext } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const LabelWrapper = styled.div`
   font-size: 16px;
@@ -9,11 +9,13 @@ const LabelWrapper = styled.div`
   > ol {
     padding: 0 16px;
     > li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 0;
       border-bottom: 1px solid #d9d9d9;
+      > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+      }
     }
   }
 `;
@@ -28,8 +30,10 @@ const Labels: React.FC<Props> = (props) => {
       <ol>
         {tags.map((tag) => (
           <li key={tag}>
-            <span>{tag}</span>
-            <Icon name="right" />
+            <Link to={"labels/tag"}>
+              <span>{tag}</span>
+              <Icon name="right" />
+            </Link>
           </li>
         ))}
       </ol>
