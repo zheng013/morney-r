@@ -9,8 +9,7 @@ const Wrapper = styled.div`
 `;
 const Content = styled.div`
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+
   overflow: auto;
 `;
 
@@ -20,7 +19,7 @@ const Layout = (props: any) => {
   }, []);
   return (
     <Wrapper>
-      <Content id="ss">{props.children}</Content>
+      <Content className={props.className}>{props.children}</Content>
       <Nav />
     </Wrapper>
   );
