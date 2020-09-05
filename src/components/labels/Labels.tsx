@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Icon from "components/Icon";
 import { useTags } from "hooks/useTags";
-import React from "react";
+import React, { useContext } from "react";
 
 const LabelWrapper = styled.div`
   font-size: 16px;
@@ -17,9 +17,12 @@ const LabelWrapper = styled.div`
     }
   }
 `;
-const Labels: React.FC = () => {
-  const { tags, setTags } = useTags();
-
+type Props = {
+  tags: string[];
+  setTags?: () => void;
+};
+const Labels: React.FC<Props> = (props) => {
+  const { tags } = props;
   return (
     <LabelWrapper>
       <ol>
