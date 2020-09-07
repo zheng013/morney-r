@@ -36,19 +36,19 @@ const Nav = () => {
     <NavWrapper>
       <ul>
         <li>
-          <NavLink to="/record" activeClassName="selected">
+          <NavLink to="/record" exact activeClassName="selected">
             <Icon name="money" />
             <span>记录页</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/labels" activeClassName="selected">
+          <NavLink to="/labels" exact activeClassName="selected">
             <Icon name="label" />
             <span>标签页</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/stactistics" activeClassName="selected">
+          <NavLink to="/stactistics" exact activeClassName="selected">
             <Icon name="TaskStatistics" />
             <span>统计页</span>
           </NavLink>

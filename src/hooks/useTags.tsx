@@ -14,6 +14,10 @@ const tagList = [
 const useTags = () => {
   //自定义hooks
   const [tags, setTags] = useState<Tags[]>(tagList);
-  return { tags, setTags };
+  const findTag = (id: number) => {
+    return tags.filter((t) => t.id === id)[0]?.tag;
+  };
+
+  return { tags, setTags, findTag };
 };
 export { useTags };
