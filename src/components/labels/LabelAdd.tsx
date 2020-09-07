@@ -1,6 +1,7 @@
 import { CenterSpace } from "components/CenterSpace";
 import { Button } from "components/Button";
 import React from "react";
+import { createId } from "utils/createId";
 
 type Props = {
   tags: { id: number; tag: string }[];
@@ -11,7 +12,7 @@ const LabelAdd: React.FC<Props> = (props) => {
   const addTag = () => {
     const tagName = window.prompt("请输入您要添加的标签名");
     if (tagName !== null && setTags) {
-      setTags([...tags, { id: 6, tag: tagName }]);
+      setTags([...tags, { id: createId(), tag: tagName }]);
     }
   };
   return (
