@@ -17,7 +17,9 @@ const useTags = () => {
   const findTag = (id: number) => {
     return tags.filter((t) => t.id === id)[0]?.tag;
   };
-
-  return { tags, setTags, findTag };
+  const changeTag = (tag: string, id: number) => {
+    setTags([...tags.filter((t) => t.id !== id), { id: id, tag: tag }]);
+  };
+  return { tags, setTags, findTag, changeTag };
 };
 export { useTags };

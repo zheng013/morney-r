@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "components/Layout";
 import { useTags } from "hooks/useTags";
@@ -17,24 +17,32 @@ const TagWrapper = styled.div`
   padding: 0 16px;
   margin-top: 8px;
 `;
-
+const TopBarR = forwardRef(TopBar as any);
 const Tag: React.FC = () => {
-  const { findTag } = useTags();
+  const { findTag, changeTag } = useTags();
   const { id } = useParams<Params>();
   const tag = findTag(parseInt(id));
 
   const changeFn = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log((e.target as HTMLInputElement).value);
+    changeTag(e.target.value, parseInt(id));
+  };
+  const linkRef: React.MutableRefObject<null> = useRef(null);
+
+  const deleteFn = () => {
+    console.log(linkRef.current);
+    if (linkRef !== null) {
+      ((linkRef.current as unknown) as HTMLButtonElement).click();
+    }
   };
 
   return (
     <Layout>
-      <TopBar />
+      <TopBarR ref={linkRef} />
       <TagWrapper>
         <LabelInput label={"标签名"} value={tag} onChange={changeFn} />
       </TagWrapper>
       <CenterSpace>
-        <Button>删除标签</Button>
+        <Button onClick={deleteFn}>删除标签</Button>
       </CenterSpace>
     </Layout>
   );
