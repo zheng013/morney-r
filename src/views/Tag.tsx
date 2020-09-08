@@ -19,7 +19,7 @@ const TagWrapper = styled.div`
 `;
 const TopBarR = forwardRef(TopBar as any);
 const Tag: React.FC = () => {
-  const { findTag, changeTag } = useTags();
+  const { findTag, changeTag, deleteTag } = useTags();
   const { id } = useParams<Params>();
   const tag = findTag(parseInt(id));
 
@@ -29,7 +29,7 @@ const Tag: React.FC = () => {
   const linkRef: React.MutableRefObject<null> = useRef(null);
 
   const deleteFn = () => {
-    console.log(linkRef.current);
+    deleteTag(parseInt(id));
     if (linkRef !== null) {
       ((linkRef.current as unknown) as HTMLButtonElement).click();
     }
