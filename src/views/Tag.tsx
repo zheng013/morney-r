@@ -31,6 +31,7 @@ const Tag: React.FC = () => {
   const deleteFn = () => {
     deleteTag(parseInt(id));
     if (linkRef !== null) {
+      //window 页面是否刷新 1.network有网络请求吗 2.入口文件index 有log吗  window.history.back  useHistory()   .goBack()
       ((linkRef.current as unknown) as HTMLButtonElement).click();
     }
   };
