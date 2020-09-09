@@ -27,8 +27,8 @@ const TagsWrapper = styled.section`
     border: none;
     outline: none;
     background: none;
-    position: absolute;
     bottom: 16px;
+    margin-top: 20px;
     color: #666;
     padding: 0 2px;
     border-bottom: 1px solid #333;
@@ -40,14 +40,9 @@ type Prop = {
   setVal: (selectedTag: number[]) => void;
 };
 const Tags: React.FC<Prop> = (props) => {
-  const { tags, setTags } = useTags();
+  const { tags, addTag } = useTags();
   const { value, setVal } = props;
-  const addFn = () => {
-    const tagName = window.prompt("请输入您要添加的标签名");
-    if (tagName !== null) {
-      setTags([...tags, { id: 5, tag: tagName }]);
-    }
-  };
+
   const toggleFn = (tagId: number) => {
     if (value.indexOf(tagId) >= 0) {
       setVal(value.filter((t) => t !== tagId));
@@ -76,7 +71,7 @@ const Tags: React.FC<Prop> = (props) => {
           </li>
         ))}
       </ol>
-      <button onClick={addFn}>新增标签</button>
+      <button onClick={addTag}>新增标签</button>
     </TagsWrapper>
   );
 };

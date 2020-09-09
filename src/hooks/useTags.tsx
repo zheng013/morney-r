@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createId } from "utils/createId";
 import { getItem, setItem } from "utils/localStorage";
 import { useUpdate } from "./useUpdate";
@@ -8,21 +8,22 @@ type Tags = {
   id: number;
 };
 //数据持久化 挂载时的初始化
-let defaultTagList: Tags[] = [];
-if (getItem("tags")) {
-  defaultTagList = JSON.parse(getItem("tags") || "[]");
-} else {
-  defaultTagList = [
-    { id: createId(), tag: "衣" },
-    { id: createId(), tag: "食" },
-    { id: createId(), tag: "住" },
-    { id: createId(), tag: "行" },
-  ];
-  setItem("tags", JSON.stringify(defaultTagList));
-}
+
 const useTags = () => {
   //自定义hooks
-  const [tags, setTags] = useState<Tags[]>(defaultTagList);
+  const [tags, setTags] = useState<Tags[]>([]);
+  useEffect(() => {
+    let localTagList = JSON.parse(getItem("tags") || "[]");
+    if (localTagList.length === 0) {
+      localTagList = [
+        { id: createId(), tag: "衣" },
+        { id: createId(), tag: "食" },
+        { id: createId(), tag: "住" },
+        { id: createId(), tag: "行" },
+      ];
+    }
+    setTags(localTagList);
+  }, []); //初次挂载++++******
   useUpdate(() => {
     setItem("tags", JSON.stringify(tags));
   }, [tags]);
@@ -35,6 +36,12 @@ const useTags = () => {
   const deleteTag = (id: number) => {
     setTags(tags.filter((t) => t.id !== id));
   };
-  return { tags, setTags, findTag, changeTag, deleteTag };
+  const addTag = () => {
+    const tagName = window.prompt("请输入您要添加的标签名");
+    if (tagName !== null && tagName !== "") {
+      setTags([...tags, { id: createId(), tag: tagName }]);
+    }
+  };
+  return { tags, setTags, findTag, changeTag, deleteTag, addTag };
 };
 export { useTags };

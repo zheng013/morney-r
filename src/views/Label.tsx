@@ -4,12 +4,12 @@ import { Labels } from "components/labels/Labels";
 import { LabelAdd } from "components/labels/LabelAdd";
 import { useTags } from "hooks/useTags";
 const Label: React.FC = () => {
-  const { tags, setTags } = useTags();
+  const { tags, addTag } = useTags();
 
   return (
     <Layout>
       <Labels tags={tags} />
-      <LabelAdd tags={tags} setTags={setTags} />
+      <LabelAdd tags={tags} addTag={addTag} />
     </Layout>
   );
 };

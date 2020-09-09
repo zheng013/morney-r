@@ -5,16 +5,10 @@ import { createId } from "utils/createId";
 
 type Props = {
   tags: { id: number; tag: string }[];
-  setTags?: (tags: { id: number; tag: string }[]) => void;
+  addTag?: () => void;
 };
 const LabelAdd: React.FC<Props> = (props) => {
-  const { tags, setTags } = props;
-  const addTag = () => {
-    const tagName = window.prompt("请输入您要添加的标签名");
-    if (tagName !== null && setTags) {
-      setTags([...tags, { id: createId(), tag: tagName }]);
-    }
-  };
+  const { tags, addTag } = props;
   return (
     <CenterSpace>
       <Button onClick={addTag}>新增标签</Button>
