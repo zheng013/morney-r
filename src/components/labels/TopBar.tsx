@@ -19,11 +19,9 @@ const Nav = styled.nav`
 `;
 
 const TopBar: React.FC = (props, ref) => {
-  const linkRef = useRef(null);
-  useImperativeHandle(ref, () => linkRef.current);
   return (
     <Nav>
-      <Link to="/labels" ref={linkRef}>
+      <Link to="/labels">
         <Icon name="left" />
       </Link>
       编辑标签

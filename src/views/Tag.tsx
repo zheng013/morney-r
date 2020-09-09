@@ -17,7 +17,6 @@ const TagWrapper = styled.div`
   padding: 0 16px;
   margin-top: 8px;
 `;
-const TopBarR = forwardRef(TopBar as any);
 const Tag: React.FC = () => {
   const { findTag, changeTag, deleteTag } = useTags();
   const { id } = useParams<Params>();
@@ -27,20 +26,17 @@ const Tag: React.FC = () => {
   const changeFn: ChangeEventHandler<HTMLInputElement> = (e) => {
     changeTag({ tag: e.target.value }, parseInt(id)); // 将e.target.value 放到一个引用对象上，保持非受控input的 非受控行
   };
-  const linkRef: React.MutableRefObject<null> = useRef(null);
 
   const deleteFn = () => {
     deleteTag(parseInt(id));
-    if (linkRef !== null) {
-      //   //window 页面是否刷新 1.network有网络请求吗 2.入口文件index 有log吗  window.//history.back  useHistory()   .goBack()
-      // ((linkRef.current as unknown) as HTMLButtonElement).click();
-      rectHistory.goBack();
-    }
+    //   //window 页面是否刷新 1.network有网络请求吗 2.入口文件index 有log吗  window.//history.back  useHistory()   .goBack()
+    // ((linkRef.current as unknown) as HTMLButtonElement).click();
+    rectHistory.goBack();
   };
 
   return (
     <Layout>
-      <TopBarR ref={linkRef} />
+      <TopBar />
       <TagWrapper>
         <LabelInput
           label="标签名"
