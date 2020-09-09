@@ -41,8 +41,8 @@ const Tag: React.FC = () => {
         <LabelInput
           label="标签名"
           type="text"
-          defaultValue={tag} //解决warning 报错
-          onBlur={changeFn}
+          value={tag} //解决warning 报错 index.js:1 Warning: A component is changing an {uncontrolled} input of type text to be controlled. 原来就是非受控 由于我们加了 value 变成受控了 需要将其改成defaultValue（可以和blur change配合）value受控只能和change受控配合   react里的change是input内容改变就执行函数     blur是非受控
+          onChange={changeFn}
         />
       </TagWrapper>
       <CenterSpace>
