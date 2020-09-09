@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, ChangeEventHandler } from "react";
+import React, { ChangeEventHandler } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Layout from "components/Layout";
 import { useTags } from "hooks/useTags";
@@ -41,8 +41,8 @@ const Tag: React.FC = () => {
         <LabelInput
           label="标签名"
           type="text"
-          value={tag}
-          onChange={changeFn}
+          defaultValue={tag} //解决warning 报错
+          onBlur={changeFn}
         />
       </TagWrapper>
       <CenterSpace>
