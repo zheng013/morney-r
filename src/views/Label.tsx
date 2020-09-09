@@ -9,7 +9,7 @@ const Label: React.FC = () => {
   return (
     <Layout>
       <Labels tags={tags} />
-      <LabelAdd tags={tags} addTag={addTag} />
+      <LabelAdd addTag={addTag} />
     </Layout>
   );
 };

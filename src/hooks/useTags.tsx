@@ -26,7 +26,7 @@ const useTags = () => {
   }, []); //初次挂载++++******
   useUpdate(() => {
     setItem("tags", JSON.stringify(tags));
-  }, [tags]);
+  }, tags);
   const findTag = (id: number) => {
     return tags.filter((t) => t.id === id)[0]?.tag;
   };
