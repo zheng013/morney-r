@@ -25,7 +25,7 @@ const Tag: React.FC = () => {
   const rectHistory = useHistory();
 
   const changeFn: ChangeEventHandler<HTMLInputElement> = (e) => {
-    changeTag(e.target.value, parseInt(id));
+    changeTag({ tag: e.target.value }, parseInt(id)); // 将e.target.value 放到一个引用对象上，保持非受控input的 非受控行
   };
   const linkRef: React.MutableRefObject<null> = useRef(null);
 

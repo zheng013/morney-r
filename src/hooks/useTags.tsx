@@ -30,7 +30,7 @@ const useTags = () => {
   const findTag = (id: number) => {
     return tags.filter((t) => t.id === id)[0]?.tag;
   };
-  const changeTag = (tag: string, id: number) => {
+  const changeTag = ({ tag }: { tag: string }, id: number) => {
     setTags(tags.map((t) => (t.id === id ? { tag, id } : t)));
   };
   const deleteTag = (id: number) => {
