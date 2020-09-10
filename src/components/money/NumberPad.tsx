@@ -5,11 +5,10 @@ import { computerNumber } from "./NumberPad/computerNumber";
 type Prop = {
   value: string;
   setVal: (amount: string) => void;
-  onOK?: () => void;
+  onOK?: (e: React.MouseEvent) => void;
 };
 const NumberPad: React.FC<Prop> = (props) => {
   const { value, setVal, onOK } = props;
-  const addFn = (e: string) => {};
 
   const oneAddFn = useCallback(
     (e: React.MouseEvent) => {
@@ -37,7 +36,7 @@ const NumberPad: React.FC<Prop> = (props) => {
           OK
         </button>
         <button className="zero">0</button>
-        <button onClick={() => addFn(".")}>.</button>
+        <button>.</button>
       </div>
     </PadWrapper>
   );

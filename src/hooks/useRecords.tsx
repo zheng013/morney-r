@@ -7,7 +7,7 @@ type RecordItem = {
   notes: string;
   category: "+" | "-";
   amount: string;
-  createAt: string; //8601
+  createAt: string; //ISO8601
 };
 const useRecords = () => {
   const [records, setRecords] = useState<RecordItem[]>([]);

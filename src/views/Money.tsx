@@ -12,26 +12,37 @@ const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
 `;
-
+const initialValue = {
+  selectedTags: [] as number[],
+  notes: "",
+  category: "-" as "+" | "-",
+  amount: "0",
+};
 const Money: React.FC = () => {
-  const [list, setList] = useState({
-    selectedTags: [] as number[],
-    notes: "",
-    category: "-" as "+" | "-",
-    amount: "0",
-  });
-  const { records, addRecord } = useRecords();
-  console.log(records);
+  const [list, setList] = useState(initialValue);
+  const { addRecord } = useRecords();
   const allSetList = (props: Partial<typeof list>) => {
     setList({
       ...list,
       ...props,
     });
   };
-  const submit = () => {
-    console.log(1);
+  const submit = (e: React.MouseEvent) => {
+    e.stopPropagation(); //防止事件冒泡  最后无法重置list列表值
+    if (list.amount === "0") {
+      return alert("请输入正确的金额");
+    }
+    if (list.selectedTags.length === 0) {
+      return alert("请输入至少一个标签");
+    }
+    if (list.notes === "" || null) {
+      return alert("请输备注");
+    }
     addRecord({ ...list, createAt: JSON.stringify(new Date()) });
+    alert("保存成功");
+    setList(initialValue);
   };
+
   return (
     <MyLayout>
       <Tags
