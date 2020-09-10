@@ -5,6 +5,7 @@ import { Tags } from "components/money/Tags";
 import { Notes } from "components/money/Notes";
 import { Category } from "components/money/Category";
 import styled from "styled-components";
+import { useRecords } from "hooks/useRecords";
 
 //对自定义组件进行样式自定义
 const MyLayout = styled(Layout)`
@@ -19,11 +20,17 @@ const Money: React.FC = () => {
     category: "-" as "+" | "-",
     amount: "0",
   });
+  const { records, addRecord } = useRecords();
+  console.log(records);
   const allSetList = (props: Partial<typeof list>) => {
     setList({
       ...list,
       ...props,
     });
+  };
+  const submit = () => {
+    console.log(1);
+    addRecord({ ...list, createAt: JSON.stringify(new Date()) });
   };
   return (
     <MyLayout>
@@ -48,6 +55,7 @@ const Money: React.FC = () => {
       <NumberPad
         value={list.amount}
         setVal={(amount) => allSetList({ amount })}
+        onOK={submit}
       />
     </MyLayout>
   );

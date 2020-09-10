@@ -5,9 +5,10 @@ import { computerNumber } from "./NumberPad/computerNumber";
 type Prop = {
   value: string;
   setVal: (amount: string) => void;
+  onOK?: () => void;
 };
 const NumberPad: React.FC<Prop> = (props) => {
-  const { value, setVal } = props;
+  const { value, setVal, onOK } = props;
   const addFn = (e: string) => {};
 
   const oneAddFn = useCallback(
@@ -32,7 +33,9 @@ const NumberPad: React.FC<Prop> = (props) => {
         <button>7</button>
         <button>8</button>
         <button>9</button>
-        <button className="OK">OK</button>
+        <button className="OK" onClick={onOK}>
+          OK
+        </button>
         <button className="zero">0</button>
         <button onClick={() => addFn(".")}>.</button>
       </div>
