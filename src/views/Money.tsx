@@ -38,9 +38,9 @@ const Money: React.FC = () => {
     if (list.notes === "" || null) {
       return alert("请输备注");
     }
-    addRecord({ ...list, createAt: JSON.stringify(new Date()) });
+    addRecord({ ...list, createAt: new Date().toISOString() });
     alert("保存成功");
-    setList(initialValue);
+    setList(initialValue); //不会立即执行 开启一个事件队列 等待所有的set动作，以便提高性能
   };
 
   return (

@@ -90,6 +90,7 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.5",
     "@types/webpack-env": "^1.15.2",
+    "dayjs": "^1.8.35",
     "node-sass": "npm:dart-sass",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.1.1",

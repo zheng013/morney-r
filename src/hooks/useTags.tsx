@@ -30,6 +30,9 @@ const useTags = () => {
   const findTag = (id: number) => {
     return tags.filter((t) => t.id === id)[0]?.tag;
   };
+  const selectedTagName = (selected: number[]) => {
+    return selected.map((s) => findTag(s)).join(",") || "";
+  };
   const changeTag = ({ tag }: { tag: string }, id: number) => {
     setTags(tags.map((t) => (t.id === id ? { tag, id } : t)));
   };
@@ -42,6 +45,14 @@ const useTags = () => {
       setTags([...tags, { id: createId(), tag: tagName }]);
     }
   };
-  return { tags, setTags, findTag, changeTag, deleteTag, addTag };
+  return {
+    tags,
+    setTags,
+    findTag,
+    changeTag,
+    deleteTag,
+    addTag,
+    selectedTagName,
+  };
 };
 export { useTags };

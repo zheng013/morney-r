@@ -28,13 +28,13 @@ type Prop = {
   value: "+" | "-";
   setVal: (category: "+" | "-") => void;
 };
-const Category: React.FC<Prop> = (props) => {
+const Category: React.FC<Prop> = (props: any) => {
   const { value, setVal } = props;
   const categoryList = useMemo<("+" | "-")[]>(() => ["-", "+"], []); // 相当于常量
   const categoryMap = useMemo(() => ({ "-": "支出", "+": "收入" }), []); // 相当于常量
   // ts的变量声明  type KeyType = keyof typeof categoryMap;
   return (
-    <CategoryWrapper>
+    <CategoryWrapper className={props.className}>
       <ul>
         {categoryList.map((c) => (
           <li
