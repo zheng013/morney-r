@@ -19,7 +19,9 @@ const Layout = (props: any) => {
   }, []);
   return (
     <Wrapper>
-      <Content className={props.className}>{props.children}</Content>
+      <Content id="ss" className={props.className}>
+        {props.children}
+      </Content>
       <Nav />
     </Wrapper>
   );

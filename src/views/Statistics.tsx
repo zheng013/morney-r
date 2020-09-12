@@ -11,6 +11,10 @@ const MyCategory = styled(Category)`
 //flex 的布局自定义margin-* 有任意一个auto 其余也可以自定义布局
 const Content = styled.ol`
   font-size: 18px;
+  > div {
+    text-align: center;
+    margin-top: 20px;
+  }
   > li {
     .title {
       display: flex;
@@ -97,32 +101,38 @@ const Statistics = () => {
     } else {
       return [];
     }
-  }, [records]);
+  }, [records, type]);
   return (
     <Layout>
       <MyCategory value={type} setVal={setType} />
       <Content>
-        {recordsShow.map((r) => (
-          <li key={r.title}>
-            <div className="title">
-              <span>{r.title}</span>
-              <span>{"￥" + r.total}</span>
-            </div>
+        {recordsShow.length !== 0 ? (
+          recordsShow.map((r) => (
+            <li key={r.title}>
+              <div className="title">
+                <span>{r.title}</span>
+                <span>{"￥" + r.total}</span>
+              </div>
 
-            <ol>
-              {r.items.map((i, index) => (
-                <li key={index}>
-                  <span>{r.time}</span>
-                  <span className="type">
-                    {selectedTagName(i.selectedTags) || ""}
-                  </span>
-                  <span className="notes">{i.notes}</span>
-                  <span>{"￥" + i.amount}</span>
-                </li>
-              ))}
-            </ol>
-          </li>
-        ))}
+              <ol>
+                {r.items.map((i, index) => (
+                  <li key={index}>
+                    <span>{r.time}</span>
+                    <span className="type">
+                      {selectedTagName(i.selectedTags) || ""}
+                    </span>
+                    <span className="notes">{i.notes}</span>
+                    <span>{"￥" + i.amount}</span>
+                  </li>
+                ))}
+              </ol>
+            </li>
+          ))
+        ) : (
+          <div>
+            <span>无记账数据展示</span>
+          </div>
+        )}
       </Content>
     </Layout>
   );
