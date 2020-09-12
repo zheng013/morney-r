@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useRef, useCallback } from "react";
+import React, { useCallback } from "react";
 
 const NotesWrapper = styled.section`
   padding: 0 16px;

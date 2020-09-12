@@ -91,7 +91,8 @@ const Statistics = () => {
           });
         }
       }
-      recordItemList.map((group) => {
+      //无返回值 forEach map有返回值
+      recordItemList.forEach((group) => {
         group.total = group.items.reduce(
           (sum, item) => (sum += parseFloat(item.amount)),
           0

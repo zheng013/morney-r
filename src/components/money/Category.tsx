@@ -27,8 +27,9 @@ const CategoryWrapper = styled.section`
 type Prop = {
   value: "+" | "-";
   setVal: (category: "+" | "-") => void;
+  className?: string;
 };
-const Category: React.FC<Prop> = (props: any) => {
+const Category: React.FC<Prop> = (props) => {
   const { value, setVal } = props;
   const categoryList = useMemo<("+" | "-")[]>(() => ["-", "+"], []); // 相当于常量
   const categoryMap = useMemo(() => ({ "-": "支出", "+": "收入" }), []); // 相当于常量

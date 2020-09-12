@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Nav from "./Nav";
 
 const Wrapper = styled.div`
@@ -9,17 +9,22 @@ const Wrapper = styled.div`
 `;
 const Content = styled.div`
   flex-grow: 1;
-
   overflow: auto;
 `;
-
-const Layout = (props: any) => {
+type Props = {
+  className?: string;
+};
+const Layout: React.FC<Props> = (props) => {
+  const contentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    document.querySelector("#ss")?.scrollTo(0, 9999);
-  }, []);
+    setTimeout(() => {
+      if (!contentRef.current) return;
+      contentRef.current.scrollTop = 9999;
+    }, 0);
+  });
   return (
     <Wrapper>
-      <Content id="ss" className={props.className}>
+      <Content ref={contentRef} className={props.className}>
         {props.children}
       </Content>
       <Nav />
