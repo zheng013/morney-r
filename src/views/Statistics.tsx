@@ -103,15 +103,15 @@ const Statistics = () => {
       <MyCategory value={type} setVal={setType} />
       <Content>
         {recordsShow.map((r) => (
-          <li>
+          <li key={r.title}>
             <div className="title">
               <span>{r.title}</span>
               <span>{"￥" + r.total}</span>
             </div>
 
             <ol>
-              {r.items.map((i) => (
-                <li>
+              {r.items.map((i, index) => (
+                <li key={index}>
                   <span>{r.time}</span>
                   <span className="type">
                     {selectedTagName(i.selectedTags) || ""}

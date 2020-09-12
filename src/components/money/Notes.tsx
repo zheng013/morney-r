@@ -30,13 +30,20 @@ type Prop = {
 };
 const Notes: React.FC<Prop> = (props) => {
   const { value, setVal } = props;
-  const inputRef = useRef<HTMLInputElement>(null);
-  const blurFn = useCallback(() => {
-    if (inputRef.current !== null) {
-      setVal(inputRef.current.value);
-    }
-    //(e)=>if(e.target!==null)setNotes(e.target.value)
-  }, [setVal]);
+  // const inputRef = useRef<HTMLInputElement>(null);
+  // const blurFn = useCallback(() => {
+  //   if (inputRef.current !== null) {
+  //     setVal(inputRef.current.value);
+  //   }
+  //   //(e)=>if(e.target!==null)setNotes(e.target.value)
+  // }, [setVal]);
+  const changeFn = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      setVal(e.target.value);
+      //(e)=>if(e.target!==null)setNotes(e.target.value)
+    },
+    [setVal]
+  );
   return (
     <NotesWrapper>
       <label>
@@ -44,9 +51,9 @@ const Notes: React.FC<Prop> = (props) => {
         <input
           type="text"
           placeholder="在这里输入备注"
-          defaultValue={value}
-          ref={inputRef}
-          onBlur={blurFn}
+          value={value}
+          //ref={inputRef}
+          onChange={changeFn}
         />
       </label>
     </NotesWrapper>
