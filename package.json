@@ -1,6 +1,7 @@
 {
   "name": "morney-r",
   "version": "0.1.0",
+  "homepage": "https://zheng013.github.io/website-morney-r/",
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",
