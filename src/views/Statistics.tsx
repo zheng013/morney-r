@@ -50,14 +50,14 @@ const Statistics = () => {
     title: string;
     total?: number;
     items: typeof records;
-    time: string;
   }[];
   type RecordItem = {
     selectedTags: number[];
     notes: string;
     category: "+" | "-";
     amount: string;
-    createAt: string; //ISO8601
+    createAt: string;
+    //ISO8601
   };
   const recordsShow = useMemo(() => {
     if (records.length !== 0) {
@@ -75,7 +75,6 @@ const Statistics = () => {
         {
           title: dayjs(newRecordList[0].createAt).format("YYYY-MM-DD"),
           items: [newRecordList[0]],
-          time: dayjs(newRecordList[0].createAt).format("hh:mm:ss"),
         },
       ];
       for (let i = 1; i < newRecordList.length; i++) {
@@ -87,7 +86,6 @@ const Statistics = () => {
           recordItemList.push({
             title: dayjs(current.createAt).format("YYYY-MM-DD"),
             items: [current],
-            time: dayjs(current.createAt).format("hh:mm:ss"),
           });
         }
       }
@@ -118,7 +116,7 @@ const Statistics = () => {
               <ol>
                 {r.items.map((i, index) => (
                   <li key={index}>
-                    <span>{r.time}</span>
+                    <span>{dayjs(i.createAt).format("hh:mm:ss")}</span>
                     <span className="type">
                       {selectedTagName(i.selectedTags) || ""}
                     </span>
