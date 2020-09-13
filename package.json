@@ -89,6 +89,7 @@
     ]
   },
   "devDependencies": {
+    "@types/echarts": "^4.6.5",
     "@types/react-router-dom": "^5.1.5",
     "@types/webpack-env": "^1.15.2",
     "dayjs": "^1.8.35",
@@ -156,4 +157,3 @@
     ]
   }
 }
-
