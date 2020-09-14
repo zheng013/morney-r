@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useRecords } from "hooks/useRecords";
 import dayjs from "dayjs";
 import { useTags } from "hooks/useTags";
+import { EchartLines } from "components/EchartLines";
 const MyCategory = styled(Category)`
   background: #fff;
 `;
@@ -101,6 +102,21 @@ const Statistics = () => {
       return [];
     }
   }, [records, type]);
+  const [option, setOption] = useState({
+    xAxis: {
+      type: "category",
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    },
+    yAxis: {
+      type: "value",
+    },
+    series: [
+      {
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: "line",
+      },
+    ],
+  });
   return (
     <Layout>
       <MyCategory value={type} setVal={setType} />
@@ -130,6 +146,7 @@ const Statistics = () => {
         ) : (
           <div>
             <span>无记账数据展示</span>
+            <EchartLines option={option} />
           </div>
         )}
       </Content>
