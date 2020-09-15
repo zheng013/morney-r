@@ -8,5 +8,4 @@ const Button = styled.button`
   border-radius: 4px;
   color: #fff;
 `;
-
 export { Button };

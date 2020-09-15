@@ -1,5 +1,5 @@
 import Layout from "components/Layout";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Category } from "components/money/Category";
 import styled from "styled-components";
 import { useRecords } from "hooks/useRecords";
@@ -105,18 +105,35 @@ const Statistics = () => {
   const [option, setOption] = useState({
     xAxis: {
       type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      data: recordsShow.map((r) => r.title),
     },
     yAxis: {
       type: "value",
     },
     series: [
       {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        data: recordsShow.map((r) => r.total),
         type: "line",
       },
     ],
   });
+  useEffect(() => {
+    setOption({
+      xAxis: {
+        type: "category",
+        data: recordsShow.map((r) => r.title),
+      },
+      yAxis: {
+        type: "value",
+      },
+      series: [
+        {
+          data: recordsShow.map((r) => r.total),
+          type: "line",
+        },
+      ],
+    });
+  }, [recordsShow]);
   return (
     <Layout>
       <MyCategory value={type} setVal={setType} />
@@ -146,10 +163,10 @@ const Statistics = () => {
         ) : (
           <div>
             <span>无记账数据展示</span>
-            <EchartLines option={option} />
           </div>
         )}
       </Content>
+      <EchartLines option={option} />
     </Layout>
   );
 };
