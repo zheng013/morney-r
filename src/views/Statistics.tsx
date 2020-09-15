@@ -107,6 +107,9 @@ const Statistics = () => {
       type: "category",
       data: recordsShow.map((r) => r.title),
     },
+    tooltip: {
+      show: true,
+    },
     yAxis: {
       type: "value",
     },
@@ -114,6 +117,12 @@ const Statistics = () => {
       {
         data: recordsShow.map((r) => r.total),
         type: "line",
+        itemStyle: {
+          borderWidth: 6,
+        },
+        lineStyle: {
+          width: 3,
+        },
       },
     ],
   });
@@ -123,6 +132,9 @@ const Statistics = () => {
         type: "category",
         data: recordsShow.map((r) => r.title),
       },
+      tooltip: {
+        show: true,
+      },
       yAxis: {
         type: "value",
       },
@@ -130,6 +142,12 @@ const Statistics = () => {
         {
           data: recordsShow.map((r) => r.total),
           type: "line",
+          itemStyle: {
+            borderWidth: 6,
+          },
+          lineStyle: {
+            width: 3,
+          },
         },
       ],
     });
