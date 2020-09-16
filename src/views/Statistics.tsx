@@ -157,6 +157,14 @@ const Statistics = () => {
       yAxis: {
         type: "value",
       },
+      dataZoom: [
+        {
+          type: "slider",
+          start: 40,
+          end: 100,
+          maxValueSpan: "3600 * 24 * 1000 *5",
+        },
+      ],
       series: [
         {
           data: recordsShow.map((r) => r.total),
