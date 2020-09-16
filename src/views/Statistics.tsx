@@ -117,11 +117,12 @@ const Statistics = () => {
       {
         data: recordsShow.map((r) => r.total),
         type: "line",
+        symbolSize: 10,
         itemStyle: {
-          borderWidth: 6,
+          borderWidth: 4,
         },
         lineStyle: {
-          width: 3,
+          width: 4,
         },
       },
     ],
@@ -142,11 +143,12 @@ const Statistics = () => {
         {
           data: recordsShow.map((r) => r.total),
           type: "line",
+          symbolSize: 10,
           itemStyle: {
-            borderWidth: 6,
+            borderWidth: 4,
           },
           lineStyle: {
-            width: 3,
+            width: 2,
           },
         },
       ],
