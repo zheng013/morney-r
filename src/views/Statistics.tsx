@@ -6,6 +6,7 @@ import { useRecords } from "hooks/useRecords";
 import dayjs from "dayjs";
 import { useTags } from "hooks/useTags";
 import { EchartLines } from "components/EchartLines";
+import { EChartOption } from "echarts";
 const MyCategory = styled(Category)`
   background: #fff;
 `;
@@ -102,10 +103,18 @@ const Statistics = () => {
       return [];
     }
   }, [records, type]);
-  const [option, setOption] = useState({
+  const [option, setOption] = useState<EChartOption>({
     xAxis: {
       type: "category",
       data: recordsShow.map((r) => r.title),
+      axisTick: {
+        alignWithLabel: true,
+      },
+      axisLine: {
+        lineStyle: {
+          color: "#1a6ef0",
+        },
+      },
     },
     tooltip: {
       show: true,
@@ -117,12 +126,13 @@ const Statistics = () => {
       {
         data: recordsShow.map((r) => r.total),
         type: "line",
-        symbolSize: 10,
+        symbol: "circle",
+        symbolSize: 10, //圆点的半径
         itemStyle: {
-          borderWidth: 4,
+          borderWidth: 4, //圆点的border
         },
         lineStyle: {
-          width: 4,
+          width: 2,
         },
       },
     ],
@@ -132,6 +142,14 @@ const Statistics = () => {
       xAxis: {
         type: "category",
         data: recordsShow.map((r) => r.title),
+        axisTick: {
+          alignWithLabel: true,
+        },
+        axisLine: {
+          lineStyle: {
+            color: "#666",
+          },
+        },
       },
       tooltip: {
         show: true,
@@ -143,9 +161,11 @@ const Statistics = () => {
         {
           data: recordsShow.map((r) => r.total),
           type: "line",
-          symbolSize: 10,
+          symbol: "circle",
+          symbolSize: 10, //圆点的半径
           itemStyle: {
             borderWidth: 4,
+            color: "#1a6ef0", //圆点的border
           },
           lineStyle: {
             width: 2,
