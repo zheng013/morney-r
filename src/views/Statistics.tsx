@@ -108,13 +108,13 @@ const Statistics = () => {
     const arr = [];
     for (let i = 0; i <= 29; i++) {
       const date = dayjs(today).subtract(i, "day").format("YYYY-MM-DD");
-      const item = records
-        .filter((r) => r.category === type)
-        .filter((r) => dayjs(r.createAt).format("YYYY-MM-DD") === date)[0];
-      arr.push({ date, value: item?.amount });
+      const item = recordsShow.filter(
+        (r) => dayjs(r.title).format("YYYY-MM-DD") === date
+      )[0];
+      arr.push({ date, value: item?.total });
     }
     return arr.reverse();
-  }, [records, type]);
+  }, [recordsShow, type]);
   const [option, setOption] = useState<EChartOption>({
     xAxis: {
       type: "category",
