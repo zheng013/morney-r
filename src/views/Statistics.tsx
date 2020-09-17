@@ -68,7 +68,7 @@ const Statistics = () => {
         .filter((record: RecordItem) => record.category === type)
         .sort(
           (a: RecordItem, b: RecordItem) =>
-            dayjs(a.createAt).valueOf() - dayjs(b.createAt).valueOf()
+            dayjs(b.createAt).valueOf() - dayjs(a.createAt).valueOf()
         );
       if (newRecordList.length === 0) {
         return [];
@@ -102,6 +102,18 @@ const Statistics = () => {
     } else {
       return [];
     }
+  }, [records, type]);
+  const dateValueList = useMemo(() => {
+    const today = new Date();
+    const arr = [];
+    for (let i = 0; i <= 29; i++) {
+      const date = dayjs(today).subtract(i, "day").format("YYYY-MM-DD");
+      const item = records
+        .filter((r) => r.category === type)
+        .filter((r) => dayjs(r.createAt).format("YYYY-MM-DD") === date)[0];
+      arr.push({ date, value: item?.amount });
+    }
+    return arr.reverse();
   }, [records, type]);
   const [option, setOption] = useState<EChartOption>({
     xAxis: {
@@ -141,7 +153,7 @@ const Statistics = () => {
     setOption({
       xAxis: {
         type: "category",
-        data: recordsShow.map((r) => r.title),
+        data: dateValueList.map((r) => r.date.slice(5)),
         axisTick: {
           alignWithLabel: true,
         },
@@ -153,6 +165,7 @@ const Statistics = () => {
       },
       tooltip: {
         show: true,
+        position: "top",
       },
       yAxis: {
         type: "value",
@@ -160,14 +173,14 @@ const Statistics = () => {
       dataZoom: [
         {
           type: "slider",
-          start: 40,
+          start: 50,
           end: 100,
           maxValueSpan: "3600 * 24 * 1000 *5",
         },
       ],
       series: [
         {
-          data: recordsShow.map((r) => r.total),
+          data: dateValueList.map((r) => r.value),
           type: "line",
           symbol: "circle",
           symbolSize: 10, //圆点的半径
@@ -187,34 +200,36 @@ const Statistics = () => {
       <MyCategory value={type} setVal={setType} />
       <Content>
         {recordsShow.length !== 0 ? (
-          recordsShow.map((r) => (
-            <li key={r.title}>
-              <div className="title">
-                <span>{r.title}</span>
-                <span>{"￥" + r.total}</span>
-              </div>
+          <>
+            {recordsShow.map((r) => (
+              <li key={r.title}>
+                <div className="title">
+                  <span>{r.title}</span>
+                  <span>{"￥" + r.total}</span>
+                </div>
 
-              <ol>
-                {r.items.map((i, index) => (
-                  <li key={index}>
-                    <span>{dayjs(i.createAt).format("hh:mm:ss")}</span>
-                    <span className="type">
-                      {selectedTagName(i.selectedTags) || ""}
-                    </span>
-                    <span className="notes">{i.notes}</span>
-                    <span>{"￥" + i.amount}</span>
-                  </li>
-                ))}
-              </ol>
-            </li>
-          ))
+                <ol>
+                  {r.items.map((i, index) => (
+                    <li key={index}>
+                      <span>{dayjs(i.createAt).format("hh:mm:ss")}</span>
+                      <span className="type">
+                        {selectedTagName(i.selectedTags) || ""}
+                      </span>
+                      <span className="notes">{i.notes}</span>
+                      <span>{"￥" + i.amount}</span>
+                    </li>
+                  ))}
+                </ol>
+              </li>
+            ))}
+            <EchartLines option={option} />
+          </>
         ) : (
           <div>
             <span>无记账数据展示</span>
           </div>
         )}
       </Content>
-      <EchartLines option={option} />
     </Layout>
   );
 };
