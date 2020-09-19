@@ -111,7 +111,7 @@ const Statistics = () => {
       const item = recordsShow.filter(
         (r) => dayjs(r.title).format("YYYY-MM-DD") === date
       )[0];
-      arr.push({ date, value: item?.total });
+      arr.push({ date, value: item?.total || 0 });
     }
     return arr.reverse();
   }, [recordsShow, type]);
@@ -175,7 +175,6 @@ const Statistics = () => {
           type: "slider",
           start: 50,
           end: 100,
-          maxValueSpan: "3600 * 24 * 1000 *5",
         },
       ],
       series: [
@@ -190,6 +189,7 @@ const Statistics = () => {
           },
           lineStyle: {
             width: 2,
+            color: "#999",
           },
         },
       ],
